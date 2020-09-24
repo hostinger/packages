@@ -1,5 +1,14 @@
 /*Hostinger CSS.*/
 
+#loginSplash #loginBrandContents
+{
+	  height: 100%;
+	  background-color: transparent;
+	  border: none;
+	  width: 95%;
+	  display: none;
+}
+
 body
 {
 	background-size: cover;
