@@ -1,5 +1,37 @@
 /*Hostinger CSS.*/
 
+.settingsGroup .groupBody .settingContainer .settingLabel .settingDescription
+{
+        font-size: 8pt;
+        color: white;
+        min-height: 3em;
+}
+
+.settingDescription
+{
+        font-size: 8pt;
+        color: white;
+        min-height: 3em;
+}
+
+.sideItemData .description, .sideItemData > p
+{
+        margin-top: 0px;
+        margin-left: 0px;
+        color: white;
+        font-size: smaller;
+}
+
+.ServerGroup.Platform-1
+{
+        background-image: none !important;
+}
+
+.ServerGroup.Platform-2 
+{
+        background-image: none !important;
+}
+
 #loginSplash #loginBrandContents
 {
 	  height: 100%;
