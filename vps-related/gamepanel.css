@@ -1,48 +1,55 @@
-/*Hostinger CSS.*/
-
-.settingsGroup .groupBody .settingContainer .settingLabel .settingDescription
-{
-        font-size: 8pt;
-        color: white;
-        min-height: 3em;
-}
-
-.settingDescription
-{
-        font-size: 8pt;
-        color: white;
-        min-height: 3em;
-}
-
-.sideItemData .description, .sideItemData > p
-{
-        margin-top: 0px;
-        margin-left: 0px;
-        color: white;
-        font-size: smaller;
-}
-
-.ServerGroup.Platform-1
-{
-        background-image: none !important;
-}
-
-.ServerGroup.Platform-2 
-{
-        background-image: none !important;
-}
-
-#loginSplash #loginBrandContents
-{
-	  height: 100%;
-	  background-color: transparent;
-	  border: none;
-	  width: 95%;
-	  display: none;
-}
-
-body
-{
-	background-size: cover;
+body,
+.bodyTab {
+  background-size: cover;
         background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI3BhaW50MF9yYWRpYWwpIi8+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwNzgiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcikiLz4KPGcgb3BhY2l0eT0iMC43MiI+CjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwNzgiIGZpbGw9InVybCgjcGFpbnQyX2xpbmVhcikiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTpzY3JlZW4iLz4KPC9nPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTgyOC45MzEgNTMwLjI1OVYzODYuODM2TDkwMS4zMTggNDI1LjQzNFY0OTAuMDUzTDk5Ny4xNDMgNDkwLjA5OUwxMDcwLjcgNTMwLjI1OUg4MjguOTMxWk0xMDE2LjczIDQ3OC4yMjhWMzg2LjgzMUwxMDkxLjA3IDQyNC40NjlWNTIxLjQxMkwxMDE2LjczIDQ3OC4yMjhaTTEwMTYuNzQgNjUzLjUyNlY1ODkuNDY0TDkyMC4xNzIgNTg5LjM5OEM5MjAuMjYyIDU4OS44MjQgODQ1LjM5IDU0OC41OTYgODQ1LjM5IDU0OC41OTZMMTA5MS4wNyA1NDkuNzQ5VjY5My4xNjlMMTAxNi43NCA2NTMuNTI2Wk04MjguOTI1IDY1My41MjVMODI4LjkyNyA1NTkuODAyTDkwMS4zMTQgNjAxLjk2NFY2OTEuMTZMODI4LjkyNSA2NTMuNTI1WiIgZmlsbD0iIzJGMUM2QSIvPgo8ZGVmcz4KPHJhZGlhbEdyYWRpZW50IGlkPSJwYWludDBfcmFkaWFsIiBjeD0iMCIgY3k9IjAiIHI9IjEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMDkuNSA1NDApIHJvdGF0ZSgxODApIHNjYWxlKDE0MDcuNSkiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNUQyREVFIi8+CjxzdG9wIG9mZnNldD0iMC4xNTk4ODQiIHN0b3AtY29sb3I9IiM1MDI1RDEiLz4KPHN0b3Agb2Zmc2V0PSIwLjgzMDQ3MyIgc3RvcC1jb2xvcj0iIzI2MTI3NyIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMTAxMjgiLz4KPC9yYWRpYWxHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iMjUwNCIgeTE9IjE2ODUuNSIgeDI9IjkzNC41IiB5Mj0iNzU5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDAwMjkiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAwMDI5IiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iLTY3Ni41IiB5MT0iLTE2NzQiIHgyPSI4NzcuNSIgeTI9IjgzOSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRkQ2RTk5Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZENkU5OSIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==")
+}
+#loginContainer,
+.sideItemList {
+  background-color: #222;
+}
+#barTop,
+#userInfo {
+  background-color: #333;
+}
+#sideMenuContainer,
+.subMenuWell,
+#mainBody {
+  background: #333;
+}
+#sideMenu a {
+  font-size: 100%;
+}
+#sideMenu a:active {
+  background-color: #111;
+}
+#sideMenu a.selected {
+  background-color: #222;
+  color: #5EA8DE;
+}
+input[type=text],
+input[type=password],
+input[type=url],
+input[type=number],
+input[type=email],
+input[type=search],
+select,
+textarea {
+  background-color: #474747;
+}
+input.searchBox {
+  background-color: transparent;
+}
+.wizardTab .wizardContents {
+  background-color: #222;
+  border-bottom: 8px solid #444;
+}
+.wizardTab .wizardContents h2 {
+  background-color: #444;
+}
+.scheduleTriggerInfo {
+  border: 1px solid #444;
+  background-color: #333;
+}
+.settingsGroup .groupBody .settingContainer {
+  background-color: #333;
 }
