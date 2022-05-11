@@ -1,0 +1,136 @@
+commit 764f25b4ddc36a60e28d30caeb0b9f44aa87fd28
+Author: ricardaska <ricardas.kacerauskas@hostinger.com>
+Date:   Wed May 11 15:42:05 2022 +0300
+
+    use ftpwho output, remove deprecated log library
+
+diff --git a/main.go b/main.go
+index 849c09a..d98b224 100644
+--- a/main.go
++++ b/main.go
+@@ -22,13 +22,15 @@ import (
+ 	"strings"
+ 	"sync"
+ 
++	"os/exec"
+ 	"os/signal"
+ 	"syscall"
+ 	"time"
+ 
++	"log"
++
+ 	"github.com/prometheus/client_golang/prometheus"
+ 	"github.com/prometheus/client_golang/prometheus/promhttp"
+-	"github.com/prometheus/common/log"
+ 	"github.com/prometheus/common/version"
+ 	"gopkg.in/alecthomas/kingpin.v2"
+ )
+@@ -134,10 +136,8 @@ func calculateUptime(s string) float64 {
+ 					m = "0"
+ 				}
+ 				v, _ := strconv.ParseFloat(m, 64)
+-				log.Debugf("ff %.0f", v)
+ 				v *= unit
+ 				d += v
+-				log.Debugf(names[i], m, v)
+ 			}
+ 		}
+ 	}
+@@ -150,7 +150,6 @@ func parseUptime(s string) time.Duration {
+ 	if err != nil {
+ 		hours, _ = time.ParseDuration(s + "m")
+ 	}
+-	log.Debugf("There are %.0f seconds in %v.\n", hours.Seconds(), hours)
+ 	return hours
+ }
+ 
+@@ -229,40 +228,22 @@ func (e *Exporter) updateConnections(s string) {
+ 		pattern = `\s*(?P<pid>\d+) (?P<user>.+)\s+\[(?P<began_session>.+)\]\s+\((?P<progress>\d+)%\)\s+(?P<cmd>.*)\s(?P<arg>.+)`
+ 	}
+ 	val := check(pattern, s)
+-	log.Debugf("%+v\n", val)
+ 
+ 	e.connections.WithLabelValues(val.Command).Inc()
+ }
+ 
+ func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
+-	stdOut := `standalone FTP daemon [15768], up for 78 days, 28 min
+-30603 account001 [ 1h42m]   0m5s idle
+-30753 account002 [  0m5s]   0m0s idle
+-30807 account003 [  0m0s]   0m0s idle
+-30739 account004 [ 0m10s]   0m0s idle
+-29525 account005 [ 3h32m]  0m20s idle
+-29467 account006 [ 1m55s]  1m52s idle
+-18985 account007 [ 6m45s]  4m50s idle
+-24309 account008 [ 5h54m]  0m24s idle
+-11714 account009 [1677h1]   0m6s idle
+-25929 account010 [ 3m40s]  3m39s idle
+-30808 account011 [  0m0s]   0m0s idle
+-32532 account012 [14m12s]  9m28s idle
+-30748 account013 [  0m8s]   0m8s idle
+-28379 account014 [ 2m28s] (n/a) STOR img.zip
+-28379 account015 [ 2m28s] (90%) RETR img.zip
+-30518 account016 [ 0m19s]  0m19s idle
+-30857 account017 [32m23s]  0m43s idle
+-29713 account018 [ 1m41s]  1m41s idle
+-29714 account019 [ 1m41s]  1m41s idle
+- 6388 account020 [13m12s]  9m59s idle
+- 3251 (none)   [  0m3s] (authenticating)
+-18232 account021 [ 7m20s]  3m39s idle
+-Service class                      -  21 users`
++
++	cmd := exec.Command("ftpwho")
++	stdout, err := cmd.Output()
++
++	if err != nil {
++		return err
++	}
+ 
+ 	ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 1)
+ 
+-	lines := strings.Split(stdOut, "\n")
++	lines := strings.Split(string(stdout), "\n")
+ 
+ 	connectionInfo := false
+ 
+@@ -304,7 +285,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
+ 	e.mutex.Lock() // To protect metrics from concurrent collects.
+ 	defer e.mutex.Unlock()
+ 	if err := e.collect(ch); err != nil {
+-		log.Errorf("Error scraping proftpd: %s", err)
++		log.Println("Error scraping proftpd: %s", err)
+ 		e.scrapeFailures.Inc()
+ 		e.scrapeFailures.Collect(ch)
+ 	}
+@@ -313,7 +294,6 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
+ func main() {
+ 
+ 	// Parse flags
+-	log.AddFlags(kingpin.CommandLine)
+ 	kingpin.Version(version.Print("proftpd_exporter"))
+ 	kingpin.HelpFlag.Short('h')
+ 	kingpin.Parse()
+@@ -330,17 +310,17 @@ func main() {
+ 	// Add Go module build info.
+ 	prometheus.MustRegister(prometheus.NewBuildInfoCollector())
+ 
+-	log.Infoln("Starting proftpd_exporter", version.Info())
+-	log.Infoln("Build context", version.BuildContext())
+-	log.Infof("Starting Server: %s", *listeningAddress)
++	log.Println("Starting proftpd_exporter", version.Info())
++	log.Println("Build context", version.BuildContext())
++	log.Println("Starting Server: %s", *listeningAddress)
+ 
+ 	// listener for the termination signals from the OS
+ 	go func() {
+-		log.Infof("listening and wait for graceful stop")
++		log.Println("listening and wait for graceful stop")
+ 		sig := <-gracefulStop
+-		log.Infof("caught sig: %+v. Wait 2 seconds...", sig)
++		log.Println("caught sig: %+v. Wait 2 seconds...", sig)
+ 		time.Sleep(2 * time.Second)
+-		log.Infof("Terminate proftpd-exporter on port: %s", *listeningAddress)
++		log.Println("Terminate proftpd-exporter on port: %s", *listeningAddress)
+ 		os.Exit(0)
+ 	}()
+ 
