@@ -1,0 +1,69 @@
+#{"rootDirectory":"","phpVersion":"8.2"}
+server {
+  listen 80;
+  listen [::]:80;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  {{ssl_certificate_key}}
+  {{ssl_certificate}}
+  {{server_name}}
+  {{root}}
+
+  {{nginx_access_log}}
+  {{nginx_error_log}}
+
+  add_header X-Frame-Options "SAMEORIGIN";
+  add_header X-XSS-Protection "1; mode=block";
+  add_header X-Content-Type-Options "nosniff";
+
+  {{settings}}
+
+  index index.html index.htm index.php;
+
+  location ~ /.well-known {
+    auth_basic off;
+    allow all;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  # Prevent Direct Access To Protected Files
+  location ~ \.(env|log) {
+    deny all;
+  }
+
+  # Prevent Direct Access To Protected Folders
+  location ~ ^/(^app$|bootstrap|config|database|overrides|resources|routes|storage|tests|artisan) {
+    deny all;
+  }
+
+  # Prevent Direct Access To modules/vendor Folders Except Assets
+  location ~ ^/(modules|vendor)\/(.*)\.((?!ico|gif|jpg|jpeg|png|js\b|css|less|sass|font|woff|woff2|eot|ttf|svg|xls|xlsx).)*$ {
+    deny all;
+  }
+
+  error_page 404 /index.php;
+
+  location ~ \.php$ {
+    include fastcgi_params;
+    fastcgi_intercept_errors on;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    try_files $uri =404;
+    fastcgi_read_timeout 3600;
+    fastcgi_send_timeout 3600;
+    fastcgi_param HTTPS $fastcgi_https;
+    fastcgi_pass 127.0.0.1:{{php_fpm_port}};
+    fastcgi_param PHP_VALUE "{{php_settings}}";
+  }
+
+  location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+  if (-f $request_filename) {
+    break;
+  }
+}
