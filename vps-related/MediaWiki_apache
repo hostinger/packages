@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName HOSTNAME
+    ServerAlias www.HOSTNAME
+    DocumentRoot /var/lib/mediawiki/
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory /var/lib/mediawiki/
+    Options +FollowSymLinks
+    AllowOverride All
+    <IfVersion >= 2.3>
+            Require all granted
+    </IfVersion>
+    <IfVersion < 2.3>
+            order allow,deny
+            allow from all
+    </IfVersion>
+    </Directory>
+
+    <DirectoryMatch ^/var/lib/mediawiki/(config|images|upload)>
+        Options -FollowSymLinks
+        AllowOverride None
+        <IfModule mod_php7.c>
+            php_admin_flag engine off
+        </IfModule>
+        <IfModule mod_php5.c>
+            php_admin_flag engine off
+        </IfModule>
+    </DirectoryMatch>
+</VirtualHost>
