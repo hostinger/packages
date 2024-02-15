@@ -6,7 +6,7 @@
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-    <Directory /var/lib/mediawiki/
+    <Directory /var/lib/mediawiki/>
     Options +FollowSymLinks
     AllowOverride All
     <IfVersion >= 2.3>
