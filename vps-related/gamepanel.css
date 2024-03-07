@@ -24,10 +24,7 @@ a:hover {
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-#loginLogo {
-  margin-top: 400px;
+  justify-content: center;
 }
 #loginLogo img{
   height: 32px;
