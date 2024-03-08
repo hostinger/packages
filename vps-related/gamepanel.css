@@ -69,7 +69,7 @@ a:hover {
 }
 #sideMenu a.selected {
   background-color: #222;
-  color: #5EA8DE;
+  color: #8C85FF;
 }
 input[type=text],
 input[type=password],
@@ -98,6 +98,9 @@ input[type=checkbox]:checked + span {
 input[type=checkbox]:checked + span::after {
   background-color: #5025d1;
 }
+button {
+  background-color: #5025d1;
+}
 button, input[type=button], input[type=submit], .button {
   border: 1px solid #673DE6;
 }
@@ -116,12 +119,12 @@ button:hover, input[type=button]:hover, input[type=submit]:hover, .button:hover 
   background-color: #333;
 }
 .ServerGroup.Online .ServerGroupHeader {
-  background: #EBE4FF;
+  background: #EBE4FF !important;
   color: #1D1E20;
   text-shadow: none;
 }
 .ServerEntry.NewServerEntry {
-  background-color: #8C85FF;
+  background-color: #8C85FF !important;
 }
 .settingsGroup .groupBody .settingContainer {
   background-color: #333;
@@ -133,4 +136,12 @@ button:hover, input[type=button]:hover, input[type=submit]:hover, .button:hover 
 .bgGreen:hover {
   background-color: #5025d1;
   border: 1px solid #5025d1;
+}
+.bgRed {
+  background-color: #D63163;
+  border: 1px solid #D63163;
+}
+.bgRed:hover {
+  background-color: #D63163;
+  border: 1px solid #D63163;
 }
