@@ -16,6 +16,13 @@ a {
 a:hover {
   color: #5025d1;
 }
+a#forgotLogin {
+    font-size: 0 !important;
+}
+a#forgotLogin:after {
+    content: "Forgot password?" !important;
+    font-size: 16px !important;
+}
 #loginContainer {
   height: 100%;
   border-radius: 0;
