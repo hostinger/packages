@@ -81,6 +81,9 @@ a#forgotLogin:after {
   background-color: #222;
   color: #8C85FF;
 }
+#notificationContainer {
+  color: #FFF;
+}
 input[type=text],
 input[type=password],
 input[type=url],
