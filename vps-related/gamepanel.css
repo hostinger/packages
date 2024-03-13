@@ -150,6 +150,14 @@ button:hover, input[type=button]:hover, input[type=submit]:hover, .button:hover 
   background-color: #5025d1;
   border: 1px solid #5025d1;
 }
+.bgInfo {
+  background-color: #673DE6;
+  border: 1px solid #673DE6;
+}
+.bgInfo:hover {
+  background-color: #5025d1;
+  border: 1px solid #5025d1;
+}
 .bgRed {
   background-color: #D63163;
   border: 1px solid #D63163;
