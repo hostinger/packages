@@ -1,0 +1,10 @@
+#!/bin/bash
+
+chmod +x /opt/hostinger/scripts/discourse_conf.sh
+
+cd /var/discourse
+git pull
+
+cat >> /root/.bashrc <<EOM
+/opt/digitalocean_discourse/setup_discourse.sh
+EOM
