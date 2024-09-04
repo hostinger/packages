@@ -59,9 +59,8 @@ a#forgotLogin:after {
     box-shadow: none;
 }
 
-#loginButton {
+#loginButton, .secureLoginButton {
     box-shadow: none;
-    width: 100%;
     border-radius: 8px;
 }
 
