@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/tmp/run_mt5.sh
+Exec=/opt/run_mt5.sh
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
