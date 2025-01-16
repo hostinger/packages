@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/run_mt4.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Run MT5 Setup
+Comment=MT5 setup
