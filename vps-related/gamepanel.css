@@ -40,6 +40,11 @@ a#forgotLogin:after {
     padding: 32px 96px 32px 96px;
 }
 
+#loginContainer .well.warning {
+  border: 1px solid #5D1FAE;
+  background-color: white;
+}
+
 #loginLogo img {
     height: 32px;
 }
