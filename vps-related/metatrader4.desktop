@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=wine "/root/.mt4/dosdevices/c:/Program Files (x86)/MetaTrader 4/terminal.exe"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=MetaTrader 4
+Comment=Start MetaTrader 4 on login
