@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=wine "/root/.mt5/dosdevices/c:/Program Files (x86)/MetaTrader 5/terminal.exe"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=MetaTrader 5
+Comment=Start MetaTrader 5 on login
