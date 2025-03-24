@@ -40,7 +40,7 @@ server {
   }
 
   # Prevent Direct Access To modules/vendor Folders Except Assets
-  location ~ ^/(modules|vendor)\/(.*)\.(?!(ico|gif|jpg|jpeg|png|js|css|less|sass|font|woff|woff2|eot|ttf|svg|xls|xlsx)$).* {
+  location ~ ^/(modules|vendor)\/(.*)\.((?!ico|gif|jpg|jpeg|png|js\\b|css|less|sass|font|woff|woff2|eot|ttf|svg|xls|xlsx).)*$ {
     deny all;
   }
 
